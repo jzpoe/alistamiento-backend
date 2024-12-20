@@ -19,7 +19,11 @@ const port =process.env.PORT;
 
 app.use('/api', router);
 
+connectDB().then(() => {
+    app.use('/api', router);
 
-app.listen(port, () => {
-    console.log(`Servidor escuchando en el puerto ${port}`);
+    // Iniciar el servidor
+    app.listen(port, () => {
+        console.log(`Servidor escuchando en el puerto ${port}`);
+    });
 });

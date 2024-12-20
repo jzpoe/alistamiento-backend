@@ -1,15 +1,18 @@
-    const mongoose = require ('mongoose');
+const mongoose = require('mongoose');
+require('dotenv').config(); // Cargar variables de entorno
 
-    require('dotenv').config(); // Cargar variables de entorno
+const mongoURI = process.env.MONGODB_URI; // URI de la base de datos desde .env
 
+const connectDB = async () => {
+    try {
+        await mongoose.connect(mongoURI, {
+            
+        });
+        console.log('Conexión a MongoDB exitosa');
+    } catch (error) {
+        console.error('Error al conectar a MongoDB:', error);
+        process.exit(1); // Termina el proceso si hay un error
+    }
+};
 
-    const mongo= process.env.MONGODB_URI
-
-    mongoose.connect(mongo) 
-    .then(() => {
-        console.log('Conexión a la base de datos exitosa');
-    }).catch((error) => {
-        console.error('Error al conectar a la base de datos:', error);
-    });
-
-    module.exports = mongoose
+module.exports = connectDB;
