@@ -6,14 +6,8 @@ const router = require('./routes/routes');
 
 const app = express();
 app.use(express.json());
-// Configuración de CORS
-const corsOptions = {
-    origin: 'https://alistamiento-front.vercel.app', // Cambia esto al dominio de tu frontend
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos permitidos
-    allowedHeaders: ['Content-Type', 'Authorization'], // Encabezados permitidos
-};
+app.use(cors()); 
 
-app.use(cors(corsOptions)); // Aplica la configuración de CORS
 const port =process.env.PORT;
 
 
