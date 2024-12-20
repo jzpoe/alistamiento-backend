@@ -6,10 +6,7 @@ const router = require('./routes/routes');
 
 const app = express();
 app.use(express.json());
-app.use(cors({
-    origin: 'https://alistamiento-backend.vercel.app', // Origen permitido
-}));
-
+app.use(cors());
 const port =process.env.PORT;
 
 
