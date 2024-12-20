@@ -1,0 +1,9 @@
+# Dependencias instaladas
+node_modules/
+
+# Archivos generados automáticamente
+package-lock.json
+.env
+.env.local
+.npmrc
+coverage/
