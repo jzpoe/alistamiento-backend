@@ -24,5 +24,5 @@ const ingreso = async (req, res)=>{
 
 
 module.exports = {
-    ingreso
+    ingreso,
 };

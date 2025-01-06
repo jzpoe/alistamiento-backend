@@ -1,17 +1,19 @@
 const express = require('express');
-const ingreso_datos = require('../controllers/mostrar_datos');
 const eliminar_datos = require('../controllers/eliminar_datos')
 const register = require('../controllers/register')
-const login = require('../controllers/login')
+const login = require('../controllers/login');
+const tarea_hecha = require('../controllers/tarea_hecha');
+const ingresoDatos = require('../controllers/ingresoDatos');
+const mostrar_datos = require('../controllers/mostrar_datos');
 
 const router = express.Router();
 
-
-router.get('/datos', ingreso_datos.mostrar_datos)
-router.post('/agregar_nueva_guia', ingreso_datos.mostrar_datos);
+router.get('/datos', mostrar_datos.mostrarData);
+router.post('/agregar', ingresoDatos.ingreso)
 router.delete('/eliminar:id', eliminar_datos.eliminar)
 router.post('/register', register.register)
 router.post('/login', login.login)
+router.patch('/hecho/:id', tarea_hecha.hecha)
 
 
 

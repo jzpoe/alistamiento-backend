@@ -1,5 +1,8 @@
 const ingresar_login = require('../model/model_login');
+const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+require('dotenv').config(); // Cargar variables de entorno
+
 
 
 const login = async (req, res)=>{
@@ -17,10 +20,27 @@ const login = async (req, res)=>{
         }
 
         const validarPassword = await bcrypt.compare(password, nuevoRegistro.password);
-        if(!validarPassword){
-             return res.status(400).json({message: 'Contraseña o usuario incorrecto'});      
+        if(validarPassword){
+
+             // Generar JWT
+            const token = jwt.sign({id: nuevoRegistro._id}, process.env.JWT_SECRET, {
+                expiresIn: 86400
+            });
+    
+                // Enviar token como cookie HTTP-only
+            res.cookie('token', token, {
+                httpOnly: true,
+                secure: process.env.NODE_ENV === 'production', // Solo HTTPS en producción
+                maxAge: 86400 * 1000, // 24 horas
+              });
+              res.status(200).json({ message: 'Usuario logueado con éxito' });
         }
-        res.status(200).json({message: 'Usuario logueado con éxito'});
+        else{
+            res.status(400).json({message: 'Contraseña incorrecta'});
+        }
+
+           
+        
 
     } catch (error) {
         res.status(500).json({message: 'Error al loguear el usuario', error: error.message })

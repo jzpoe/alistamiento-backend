@@ -1,7 +1,7 @@
 const ingresar_datos = require('../model/model');
 
 
-const mostrar_datos = async (req, res)=>{
+const mostrarData = async (req, res)=>{
     try {
         const datos_mostrar = await ingresar_datos.find()
         if(!datos_mostrar){
@@ -17,5 +17,5 @@ const mostrar_datos = async (req, res)=>{
 
 
 module.exports = {
-    mostrar_datos,
+    mostrarData,
 };
