@@ -12,7 +12,7 @@ app.use(express.json());
 
 // Configuración de CORS
 const corsOptions = {
-  origin: 'http://localhost:5173',
+  origin: 'https://alistamiento-front.vercel.app/',
   methods: ['GET', 'POST', 'PATCH', 'PUT', 'DELETE', 'OPTIONS'],
   credentials: true,
 };
